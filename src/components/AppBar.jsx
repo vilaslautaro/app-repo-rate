@@ -1,27 +1,23 @@
-import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import StyledText from "./StyledText";
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  ScrollView,
+} from "react-native";
 import Constants from "expo-constants";
+import { Link, useLocation } from "react-router-native";
+import StyledText from "./StyledText";
 import { theme } from "./theme";
-import { Link } from "react-router-native";
 
-const styles = StyleSheet.create({
-  appBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: theme.appBar.primary,
-    paddingTop: Constants.statusBarHeight + 10,
-    paddingBottom: 10,
-  },
-  text: {
-    paddingHorizontal: 10,
-    color: theme.appBar.textPrimary,
-  },
-});
+const AppBarTab = ({ children, to }) => {
+  const { pathname } = useLocation();
+  const active = pathname === to;
 
-const AppBarTab = ({ active, children, to }) => {
+  const textStyles = [styles.text, active && styles.active];
+
   return (
     <Link to={to} component={TouchableWithoutFeedback}>
-      <StyledText style={styles.text} fontWeight="bold">
+      <StyledText style={textStyles} fontWeight="bold">
         {children}
       </StyledText>
     </Link>
@@ -31,14 +27,30 @@ const AppBarTab = ({ active, children, to }) => {
 const AppBar = () => {
   return (
     <View styles={styles.appBar}>
-      <AppBarTab active={true} to="/">
-        Repositories
-      </AppBarTab>
-      <AppBarTab active={true} to="/signin">
-        Sign In
-      </AppBarTab>
+      <ScrollView horizontal style={styles.scrollContainer}>
+        <AppBarTab to="/">Repositories</AppBarTab>
+        <AppBarTab to="/signin">Sign In</AppBarTab>
+      </ScrollView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  appBar: {
+    flexDirection: "row",
+    backgroundColor: theme.appBar.primary,
+    paddingTop: Constants.statusBarHeight + 10,
+  },
+  scrollContainer: {
+    paddingBottom: 15,
+  },
+  text: {
+    paddingHorizontal: 10,
+    color: theme.appBar.textSecondary,
+  },
+  active: {
+    color: theme.appBar.textPrimary,
+  },
+});
 
 export default AppBar;

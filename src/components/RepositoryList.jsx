@@ -2,10 +2,10 @@ import { View, Text, FlatList } from "react-native";
 import { useRepositories } from "../../hooks/useRepositories";
 import RepositoryItem from "./RepositoryItem";
 
-
-
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  const { repositories, loading } = useRepositories();
+
+  if (loading) return "Cargando...";
 
   return (
     <View>

@@ -7,7 +7,7 @@ const RepositoryItemHeader = ({ fullName, description, language }) => {
       <View style={styles.containerImage}>
         <Image
           style={styles.image}
-          source={{ uri: "https://ibb.co/RQmMnvt" }}
+          source={{ uri: ownerAvatarUrl}}
         />
       </View>
       <View style={styles.containerText}>

@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import RepositoryItemHeader from "./RepositoryItemHeader";
 import RepositoryStats from "./RepositoryStats";
 import { theme } from "./theme";
@@ -30,7 +30,11 @@ const styles = StyleSheet.create({
     padding: 4,
     marginVertical: 4,
     color: theme.colors.white,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: Platform.select({
+      android: theme.colors.primary,
+      ios: "red",
+      default: "purple",
+    }),
     alignSelf: "flex-start",
     borderRadius: 4,
     overflow: "hidden",

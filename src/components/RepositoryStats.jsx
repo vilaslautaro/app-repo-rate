@@ -1,41 +1,38 @@
 import { StyleSheet, View } from "react-native";
+import { parseThousands } from "../../utils/parseThousand";
 import StyledText from "./StyledText";
 
-const parseThousands = (value) => {
-  return value >= 1000 ? `${Math.rounder(value / 100) / 10}k` : String(value);
-};
-
-const RepositoryStats = ({ stargazersCount, forksCount, reviewCount, ratingAverage }) => {
+const RepositoryStats = ({
+  stargazersCount,
+  forksCount,
+  reviewCount,
+  ratingAverage,
+}) => {
   return (
     <View style={styles.container}>
       <View>
         <StyledText align="center" fontWeight="bold">
-          Starts
-        </StyledText>
-        <StyledText align="center">
-          {" "}
           {parseThousands(stargazersCount)}
         </StyledText>
+        <StyledText align="center">Starts</StyledText>
       </View>
       <View>
         <StyledText align="center" fontWeight="bold">
-          Forks
-        </StyledText>
-        <StyledText align="center">
           {parseThousands(forksCount)}
         </StyledText>
+        <StyledText align="center">Forks</StyledText>
       </View>
       <View>
         <StyledText align="center" fontWeight="bold">
-          Review
+          {reviewCount}
         </StyledText>
-        <StyledText align="center">{reviewCount}</StyledText>
+        <StyledText align="center">Review</StyledText>
       </View>
       <View>
         <StyledText align="center" fontWeight="bold">
-          Rating
+          {ratingAverage}
         </StyledText>
-        <StyledText align="center">{ratingAverage}</StyledText>
+        <StyledText align="center">Rating</StyledText>
       </View>
     </View>
   );

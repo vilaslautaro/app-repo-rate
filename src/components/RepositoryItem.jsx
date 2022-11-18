@@ -1,12 +1,22 @@
 import { View, StyleSheet } from "react-native";
+import RepositoryItemHeader from "./RepositoryItemHeader";
 import RepositoryStats from "./RepositoryStats";
 import { theme } from "./theme";
 
 const RepositoryItem = ({ repo }) => {
   return (
     <View key={repo.id} style={styles.container}>
-      <RepositoryItemHeader repo={repo} />
-      <RepositoryStats repo={repo} />
+      <RepositoryItemHeader
+        fullName={repo.fullName}
+        description={repo.description}
+        language={repo.language}
+      />
+      <RepositoryStats
+        stargazersCount={repo.stargazersCount}
+        forksCount={repo.forksCount}
+        reviewCount={repo.reviewCount}
+        ratingAverage={repo.ratingAverage}
+      />
     </View>
   );
 };
@@ -14,11 +24,11 @@ const RepositoryItem = ({ repo }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    paddingBottom: 5,
-    paddingTop: 5,
+    paddingVertical: 5,
   },
   language: {
     padding: 4,
+    marginVertical: 4,
     color: theme.colors.white,
     backgroundColor: theme.colors.primary,
     alignSelf: "flex-start",

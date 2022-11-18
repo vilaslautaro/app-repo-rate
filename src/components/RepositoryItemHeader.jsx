@@ -1,27 +1,43 @@
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import StyledText from "./StyledText";
 
-const RepositoryItemHeader = ({repo}) => {
+const RepositoryItemHeader = ({ fullName, description, language }) => {
   return (
-    <>
-      <Image style={styles.image} source={{ uri: "https://ibb.co/RQmMnvt" }} />
-      <StyledText fontSize="subheading" fontWeight="bold">
-        {repo.fullName}
-      </StyledText>
-      <StyledText>{repo.description}</StyledText>
-      <StyledText style={styles.language}>{repo.language}</StyledText>
-    </>
+    <View style={styles.container}>
+      <View style={styles.containerImage}>
+        <Image
+          style={styles.image}
+          source={{ uri: "https://ibb.co/RQmMnvt" }}
+        />
+      </View>
+      <View style={styles.containerText}>
+        <StyledText fontSize="subheading" fontWeight="bold">
+          {fullName}
+        </StyledText>
+        <StyledText>{description}</StyledText>
+        <StyledText style={styles.language}>{language}</StyledText>
+      </View>
+    </View>
   );
 };
 
-
 const styles = StyleSheet.create({
-    image: {
-      width: 48,
-      height: 48,
-      margin: "auto",
-      borderRadius: 4,
-    },
-  });
+  container: {
+    flexDirection: "row",
+    paddingBottom: 2,
+  },
+  containerImage: {
+    paddingRight: 10,
+  },
+  image: {
+    width: 48,
+    height: 48,
+    margin: "auto",
+    borderRadius: 4,
+  },
+  containerText: {
+    flex: 1,
+  },
+});
 
 export default RepositoryItemHeader;

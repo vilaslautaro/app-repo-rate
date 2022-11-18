@@ -16,4 +16,8 @@ export const theme = {
     normal: "400",
     bold: "700",
   },
+  appBar: {
+    primary: '#242492e',
+    textPrimary: '#fff'
+  }
 };

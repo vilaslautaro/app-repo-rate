@@ -5,7 +5,7 @@ const parseThousands = (value) => {
   return value >= 1000 ? `${Math.rounder(value / 100) / 10}k` : String(value);
 };
 
-const RepositoryStats = ({ repo }) => {
+const RepositoryStats = ({ stargazersCount, forksCount, reviewCount, ratingAverage }) => {
   return (
     <View style={styles.container}>
       <View>
@@ -14,7 +14,7 @@ const RepositoryStats = ({ repo }) => {
         </StyledText>
         <StyledText align="center">
           {" "}
-          {parseThousands(repo.stargazersCount)}
+          {parseThousands(stargazersCount)}
         </StyledText>
       </View>
       <View>
@@ -22,20 +22,20 @@ const RepositoryStats = ({ repo }) => {
           Forks
         </StyledText>
         <StyledText align="center">
-          {parseThousands(repo.forksCount)}
+          {parseThousands(forksCount)}
         </StyledText>
       </View>
       <View>
         <StyledText align="center" fontWeight="bold">
           Review
         </StyledText>
-        <StyledText align="center">{repo.reviewCount}</StyledText>
+        <StyledText align="center">{reviewCount}</StyledText>
       </View>
       <View>
         <StyledText align="center" fontWeight="bold">
           Rating
         </StyledText>
-        <StyledText align="center">{repo.ratingAverage}</StyledText>
+        <StyledText align="center">{ratingAverage}</StyledText>
       </View>
     </View>
   );
